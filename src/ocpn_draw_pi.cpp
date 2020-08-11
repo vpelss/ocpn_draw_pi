@@ -3262,8 +3262,12 @@ wxString ocpn_draw_pi::CreateExtraPathLegInfo(ODDC &dc, ODPath *path, double brg
     } else {
         if( g_bShowMag )
             pathInfo << wxString::Format( wxString("%03d°(M)  ", wxConvUTF8 ), (int)GetTrueOrMag( brg ) );
-        else
-            pathInfo << wxString::Format( wxString("%03d°  ", wxConvUTF8 ), (int)GetTrueOrMag( brg ) );
+        else{
+        int EBLbrgFrom = (int)GetTrueOrMag( brg );
+        int EBLbrgTo = EBLbrgFrom - 180;
+        if(EBLbrgTo < 0) EBLbrgTo += 360;
+            pathInfo << wxString::Format( wxString("%03d°  ", wxConvUTF8 ), (int)GetTrueOrMag( EBLbrgTo ) );
+}
     }
     
     pathInfo << wxS(" ") << FormatDistanceAdaptive( dist );
@@ -4466,4 +4470,3 @@ void ocpn_draw_pi::ODRequestRefresh(int canvas_index, bool bFullRefresh)
         }
     }
 }
-
