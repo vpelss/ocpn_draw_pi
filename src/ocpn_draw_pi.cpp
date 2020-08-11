@@ -28,7 +28,7 @@
 //#define _2_9_x_ // uncomment this to compile for 2.9.x
 
 #include "wx/wxprec.h"
-
+ 
 #ifndef  WX_PRECOMP
 #include "wx/wx.h"
 #endif //precompiled headers
